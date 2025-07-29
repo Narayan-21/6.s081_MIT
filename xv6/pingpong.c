@@ -1,6 +1,10 @@
 #include "types.h"
 #include "user.h"
 
+// pipe(p) --> initializes an unnamed pipe and gives -
+// p[0] - file descriptor for read end
+// p[1] - file descriptor for write end
+
 int main() {
 	int p2c[2];
 	int c2p[2];
@@ -22,7 +26,7 @@ int main() {
 	} else {
 		write(p2c[1], "x", 1);
 		read(c2p[0], buf, 1);
-		printf(1, "%d: received pong\n", getpid());
+		printf(1, "%d: received pong\n", getpid()); // 1 -> file descriptor -> standard output (0-stdin, 1- stdout, 2- stderr)
 		wait();
 		exit();
 	}
